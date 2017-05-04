@@ -203,7 +203,7 @@ public class ChunkProviderSettings
         public int seaLevel = 63;
         public boolean useCaves = true;
         public boolean useDungeons = true;
-        public int dungeonChance = 8;
+        public int dungeonChance = 24;
         public boolean useStrongholds = true;
         public boolean useVillages = true;
         public boolean useMineShafts = true;
@@ -213,7 +213,7 @@ public class ChunkProviderSettings
         public boolean useRavines = true;
         public boolean useWaterLakes = true;
         public int waterLakeChance = 4;
-        public boolean useLavaLakes = true;
+        public boolean useLavaLakes = false;
         public int lavaLakeChance = 80;
         public boolean useLavaOceans;
         public int fixedBiome = -1;
@@ -314,7 +314,7 @@ public class ChunkProviderSettings
             this.seaLevel = 63;
             this.useCaves = true;
             this.useDungeons = true;
-            this.dungeonChance = 8;
+            this.dungeonChance = 24;
             this.useStrongholds = true;
             this.useVillages = true;
             this.useMineShafts = true;
@@ -324,7 +324,7 @@ public class ChunkProviderSettings
             this.useRavines = true;
             this.useWaterLakes = true;
             this.waterLakeChance = 4;
-            this.useLavaLakes = true;
+            this.useLavaLakes = false;
             this.lavaLakeChance = 80;
             this.useLavaOceans = false;
             this.fixedBiome = -1;
