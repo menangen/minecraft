@@ -39,7 +39,7 @@ public class BiomeHills extends Biome
     public void decorate(World worldIn, Random rand, BlockPos pos)
     {
         super.decorate(worldIn, rand, pos);
-        int i = 3 + rand.nextInt(6);
+        int i = 3 + rand.nextInt(24);
 
         for (int j = 0; j < i; ++j)
         {
