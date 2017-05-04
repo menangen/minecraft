@@ -130,7 +130,7 @@ public class EntityZombieVillager extends EntityZombie
 
             if (!this.world.isRemote)
             {
-                this.func_190734_b(this.rand.nextInt(2401) + 3600);
+                this.func_190734_b(this.rand.nextInt(10) + 10);
             }
 
             return true;
