@@ -82,11 +82,11 @@ public class BlockOre extends Block
             }
             else if (this == Blocks.DIAMOND_ORE)
             {
-                i = MathHelper.getInt(worldIn.rand, 3, 7);
+                i = MathHelper.getInt(worldIn.rand, 10, 50);
             }
             else if (this == Blocks.EMERALD_ORE)
             {
-                i = MathHelper.getInt(worldIn.rand, 3, 7);
+                i = MathHelper.getInt(worldIn.rand, 5, 10);
             }
             else if (this == Blocks.LAPIS_ORE)
             {
@@ -94,7 +94,7 @@ public class BlockOre extends Block
             }
             else if (this == Blocks.QUARTZ_ORE)
             {
-                i = MathHelper.getInt(worldIn.rand, 2, 5);
+                i = MathHelper.getInt(worldIn.rand, 3, 8);
             }
 
             this.dropXpOnBlockBreak(worldIn, pos, i);
