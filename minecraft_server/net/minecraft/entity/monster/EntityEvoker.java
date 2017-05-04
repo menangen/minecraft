@@ -48,7 +48,7 @@ public class EntityEvoker extends EntityMob
     {
         super(p_i47287_1_);
         this.setSize(0.6F, 1.95F);
-        this.experienceValue = 10;
+        this.experienceValue = 20;
     }
 
     protected void initEntityAI()

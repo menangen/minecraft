@@ -54,6 +54,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
     public EntityWitch(World worldIn)
     {
         super(worldIn);
+        this.experienceValue = 12;
         this.setSize(0.6F, 1.95F);
     }
 

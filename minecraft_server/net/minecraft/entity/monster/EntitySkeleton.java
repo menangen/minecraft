@@ -21,6 +21,7 @@ public class EntitySkeleton extends AbstractSkeleton
     public EntitySkeleton(World worldIn)
     {
         super(worldIn);
+        this.experienceValue = 10;
     }
 
     public static void registerFixesSkeleton(DataFixer fixer)

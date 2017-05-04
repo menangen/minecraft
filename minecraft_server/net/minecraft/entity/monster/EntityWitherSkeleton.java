@@ -28,6 +28,7 @@ public class EntityWitherSkeleton extends AbstractSkeleton
         super(p_i47278_1_);
         this.setSize(0.7F, 2.4F);
         this.isImmuneToFire = true;
+        this.experienceValue = 15;
     }
 
     public static void func_190729_b(DataFixer p_190729_0_)

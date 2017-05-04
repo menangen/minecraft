@@ -46,7 +46,7 @@ public class EntityBlaze extends EntityMob
         this.setPathPriority(PathNodeType.DANGER_FIRE, 0.0F);
         this.setPathPriority(PathNodeType.DAMAGE_FIRE, 0.0F);
         this.isImmuneToFire = true;
-        this.experienceValue = 10;
+        this.experienceValue = 20;
     }
 
     public static void registerFixesBlaze(DataFixer fixer)

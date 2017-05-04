@@ -61,6 +61,7 @@ public class EntityCreeper extends EntityMob
     {
         super(worldIn);
         this.setSize(0.6F, 1.7F);
+        this.experienceValue = 15;
     }
 
     protected void initEntityAI()

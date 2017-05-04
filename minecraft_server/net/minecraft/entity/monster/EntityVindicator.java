@@ -47,6 +47,7 @@ public class EntityVindicator extends EntityMob
     {
         super(p_i47279_1_);
         this.setSize(0.6F, 1.95F);
+        this.experienceValue = 20;
     }
 
     public static void func_190641_b(DataFixer p_190641_0_)
