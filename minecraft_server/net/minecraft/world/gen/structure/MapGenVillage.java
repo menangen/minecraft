@@ -14,7 +14,12 @@ import net.minecraft.world.biome.Biome;
 
 public class MapGenVillage extends MapGenStructure
 {
-    public static final List<Biome> VILLAGE_SPAWN_BIOMES = Arrays.<Biome>asList(new Biome[] {Biomes.PLAINS, Biomes.DESERT, Biomes.SAVANNA, Biomes.TAIGA});
+    public static final List<Biome> VILLAGE_SPAWN_BIOMES =
+        Arrays.<Biome>asList(
+            new Biome[] {
+                    Biomes.PLAINS, Biomes.DESERT, Biomes.SAVANNA, Biomes.TAIGA, Biomes.MUTATED_FOREST
+            }
+        );
 
     /** None */
     private int size;

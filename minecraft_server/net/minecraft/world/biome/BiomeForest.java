@@ -29,10 +29,12 @@ public class BiomeForest extends Biome
 
         if (this.type == BiomeForest.Type.FLOWER)
         {
-            this.theBiomeDecorator.treesPerChunk = 6;
+            this.theBiomeDecorator.treesPerChunk = 2;
             this.theBiomeDecorator.flowersPerChunk = 100;
-            this.theBiomeDecorator.grassPerChunk = 1;
-            this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityRabbit.class, 4, 2, 3));
+            this.theBiomeDecorator.grassPerChunk = 2;
+            this.spawnableCreatureList.add(new Biome.SpawnListEntry(
+                    EntityRabbit.class, 4, 2, 3)
+            );
         }
 
         if (this.type == BiomeForest.Type.NORMAL)

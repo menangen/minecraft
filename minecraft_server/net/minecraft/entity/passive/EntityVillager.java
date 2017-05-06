@@ -1021,7 +1021,12 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
         }
         else
         {
-            this.careerId = this.rand.nextInt(aentityvillager$itradelist.length) + 1;
+            if (this.getProfession() == 0 && this.rand.nextInt(12) != 0) {
+                this.careerId = 1;
+            }
+            else {
+                this.careerId = this.rand.nextInt(aentityvillager$itradelist.length) + 1;
+            }
             this.careerLevel = 1;
         }
 
