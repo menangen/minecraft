@@ -28,8 +28,9 @@ public class MapGenVillage extends MapGenStructure
 
     public MapGenVillage()
     {
-        this.distance = 32;
-        this.minTownSeparation = 8;
+        Random random = new Random();
+        this.distance = 15 + random.nextInt(3);
+        this.minTownSeparation = 20;
     }
 
     public MapGenVillage(Map<String, String> map)
@@ -44,7 +45,7 @@ public class MapGenVillage extends MapGenStructure
             }
             else if (((String)entry.getKey()).equals("distance"))
             {
-                this.distance = MathHelper.getInt((String)entry.getValue(), this.distance, 9);
+                this.distance = MathHelper.getInt((String)entry.getValue(), this.distance, 15);
             }
         }
     }
