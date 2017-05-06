@@ -130,7 +130,7 @@ public class EntityZombieVillager extends EntityZombie
 
             if (!this.world.isRemote)
             {
-                this.func_190734_b(this.rand.nextInt(10) + 10);
+                this.func_190734_b(this.rand.nextInt(50) + 100);
             }
 
             return true;
@@ -170,7 +170,9 @@ public class EntityZombieVillager extends EntityZombie
     {
         EntityVillager entityvillager = new EntityVillager(this.world);
         entityvillager.copyLocationAndAnglesFrom(this);
-        entityvillager.setProfession(this.func_190736_dl());
+
+        entityvillager.setProfession(0);
+
         entityvillager.func_190672_a(this.world.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null, false);
         entityvillager.setLookingForHome();
 
