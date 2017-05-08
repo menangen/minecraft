@@ -7,8 +7,8 @@ import net.minecraft.world.gen.ChunkProviderSettings;
 
 public class GenLayerBiome extends GenLayer
 {
-    private Biome[] warmBiomes = new Biome[] {Biomes.DESERT, Biomes.DESERT, Biomes.DESERT, Biomes.SAVANNA, Biomes.SAVANNA, Biomes.PLAINS};
-    private final Biome[] mediumBiomes = new Biome[] {Biomes.FOREST, Biomes.ROOFED_FOREST, Biomes.EXTREME_HILLS, Biomes.PLAINS, Biomes.BIRCH_FOREST, Biomes.SWAMPLAND};
+    private Biome[] warmBiomes = new Biome[] {Biomes.DESERT, Biomes.SAVANNA, Biomes.MUTATED_FOREST, Biomes.PLAINS};
+    private final Biome[] mediumBiomes = new Biome[] {Biomes.FOREST, Biomes.ROOFED_FOREST, Biomes.MUTATED_FOREST, Biomes.PLAINS, Biomes.BIRCH_FOREST, Biomes.SWAMPLAND};
     private final Biome[] coldBiomes = new Biome[] {Biomes.FOREST, Biomes.EXTREME_HILLS, Biomes.TAIGA, Biomes.PLAINS};
     private final Biome[] iceBiomes = new Biome[] {Biomes.ICE_PLAINS, Biomes.ICE_PLAINS, Biomes.ICE_PLAINS, Biomes.COLD_TAIGA};
     private final ChunkProviderSettings settings;
@@ -20,7 +20,7 @@ public class GenLayerBiome extends GenLayer
 
         if (p_i45560_4_ == WorldType.DEFAULT_1_1)
         {
-            this.warmBiomes = new Biome[] {Biomes.DESERT, Biomes.FOREST, Biomes.EXTREME_HILLS, Biomes.SWAMPLAND, Biomes.PLAINS, Biomes.TAIGA};
+            this.warmBiomes = new Biome[] {Biomes.DESERT, Biomes.FOREST, Biomes.MUTATED_FOREST, Biomes.SWAMPLAND, Biomes.PLAINS, Biomes.TAIGA};
             this.settings = null;
         }
         else
