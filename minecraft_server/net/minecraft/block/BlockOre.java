@@ -82,11 +82,11 @@ public class BlockOre extends Block
             }
             else if (this == Blocks.DIAMOND_ORE)
             {
-                i = MathHelper.getInt(worldIn.rand, 10, 50);
+                i = MathHelper.getInt(worldIn.rand, 20, 28);
             }
             else if (this == Blocks.EMERALD_ORE)
             {
-                i = MathHelper.getInt(worldIn.rand, 5, 10);
+                i = MathHelper.getInt(worldIn.rand, 5, 25);
             }
             else if (this == Blocks.LAPIS_ORE)
             {

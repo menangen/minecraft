@@ -34,6 +34,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.monster.EntityEvoker;
 import net.minecraft.entity.monster.EntityVex;
 import net.minecraft.entity.monster.EntityVindicator;
@@ -125,7 +126,8 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
     private static final EntityVillager.ITradeList[][][][] DEFAULT_TRADE_LIST_MAP = new EntityVillager.ITradeList[][][][]{
             {
                 {
-                    {
+                    {// Фермер
+
                         new EntityVillager.EmeraldForItems(Items.WHEAT, new EntityVillager.PriceInfo(18, 22)),
                         new EntityVillager.EmeraldForItems(Items.POTATO, new EntityVillager.PriceInfo(15, 19)),
                         new EntityVillager.EmeraldForItems(Items.CARROT, new EntityVillager.PriceInfo(15, 19)),
@@ -140,29 +142,58 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                         new EntityVillager.ListItemForEmeralds(Items.APPLE, new EntityVillager.PriceInfo(-7, -5))},
                     {
                         new EntityVillager.ListItemForEmeralds(Items.COOKIE, new EntityVillager.PriceInfo(-10, -6)),
-                        new EntityVillager.ListItemForEmeralds(Items.CAKE, new EntityVillager.PriceInfo(1, 1))}
+                        new EntityVillager.ListItemForEmeralds(Items.CAKE, new EntityVillager.PriceInfo(1, 1))},
+                    {
+                        // Свинья
+                        new EntityVillager.ListItemForEmeralds(
+                                new ItemStack(Items.SPAWN_EGG),
+                                new EntityVillager.PriceInfo(14, 18)
+                        ).setSpawnEgg(EntityPig.class)
+                    },
+                    {
+                        // Корова
+                        new EntityVillager.ListItemForEmeralds(
+                                new ItemStack(Items.SPAWN_EGG),
+                                new EntityVillager.PriceInfo(20, 23)
+                        ).setSpawnEgg(EntityCow.class),
+
+                        new EntityVillager.EmeraldForItems(
+                                Item.getItemFromBlock(Blocks.RED_MUSHROOM),
+                                new EntityVillager.PriceInfo(12, 16)
+                        )
+                    }
                 },
 
-                {
+                {// Рыбак
                     {
                         new EntityVillager.EmeraldForItems(Items.STRING, new EntityVillager.PriceInfo(15, 20)),
                         new EntityVillager.EmeraldForItems(Items.COAL, new EntityVillager.PriceInfo(16, 24)),
                         new EntityVillager.ItemAndEmeraldToItem(
                                             Items.FISH, new EntityVillager.PriceInfo(5, 5),
-                                            Items.COOKED_FISH, new EntityVillager.PriceInfo(12, 12)
+                                            Items.COOKED_FISH, new EntityVillager.PriceInfo(6, 8)
                         )
                     },
                     {
-                        new EntityVillager.ListEnchantedItemForEmeralds(Items.FISHING_ROD, new EntityVillager.PriceInfo(7, 8))}
+                        new EntityVillager.ListEnchantedItemForEmeralds(Items.FISHING_ROD, new EntityVillager.PriceInfo(7, 8))
+                    },
+                    {
+                        new EntityVillager.ListEnchantedItemForEmeralds(Items.FISHING_ROD, new EntityVillager.PriceInfo(17, 25))
+                    }
                 },
 
-                {
+                {// Пастух
                     {
                         new EntityVillager.EmeraldForItems(Item.getItemFromBlock(Blocks.WOOL),
                         new EntityVillager.PriceInfo(16, 22)),
                         new EntityVillager.ListItemForEmeralds(
-                                            Items.SHEARS, new EntityVillager.PriceInfo(3, 4)
+                                            Items.SHEARS, new EntityVillager.PriceInfo(1, 1)
                             )
+                    },
+                    {
+                        new EntityVillager.ListItemForEmeralds(
+                                new ItemStack(Items.SPAWN_EGG, 1, 91),
+                                new EntityVillager.PriceInfo(7, 12)//Свинья
+                        )
                     },
                     {
                         new EntityVillager.ListItemForEmeralds(
@@ -232,7 +263,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                     }
                 },
 
-                {
+                {// Лучник
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.STRING, new EntityVillager.PriceInfo(15, 20)
@@ -242,19 +273,24 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                             )
                     },
                     {
-                        new EntityVillager.ListItemForEmeralds(
-                                Items.BOW, new EntityVillager.PriceInfo(2, 3)
-                            ),
+                        new EntityVillager.ListEnchantedItemForEmeralds(Items.BOW, new EntityVillager.PriceInfo(2, 3)),
                         new EntityVillager.ItemAndEmeraldToItem(
                                 Item.getItemFromBlock(Blocks.GRAVEL), new EntityVillager.PriceInfo(10, 10),
                                 Items.FLINT, new EntityVillager.PriceInfo(6, 10)
                             )
+                    },
+                    {
+                        new EntityVillager.EmeraldForItems(
+                                Item.getItemFromBlock(Blocks.TNT),
+                                new EntityVillager.PriceInfo(3, 5)
+                        ),
+                        new EntityVillager.ListEnchantedItemForEmeralds(Items.BOW, new EntityVillager.PriceInfo(24, 32)),
                     }
                 }
             },
 
             {
-                {
+                {// Библиотекарь
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.PAPER, new EntityVillager.PriceInfo(24, 36)
@@ -266,37 +302,40 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                                 Items.BOOK, new EntityVillager.PriceInfo(8, 10)
                             ),
                         new EntityVillager.ListItemForEmeralds(
-                                Items.COMPASS, new EntityVillager.PriceInfo(10, 12)
+                                Items.COMPASS, new EntityVillager.PriceInfo(2, 5)
                             ),
                         new EntityVillager.ListItemForEmeralds(
                                 Item.getItemFromBlock(Blocks.BOOKSHELF), new EntityVillager.PriceInfo(3, 4)
                             )
                     },
                     {
+                        new EntityVillager.ListEnchantedBookForEmeralds(),
+
                         new EntityVillager.EmeraldForItems(
-                                Items.WRITTEN_BOOK, new EntityVillager.PriceInfo(2, 2)
+                                Items.WRITTEN_BOOK, new EntityVillager.PriceInfo(1, 2)
                             ),
                         new EntityVillager.ListItemForEmeralds(
-                                Items.CLOCK, new EntityVillager.PriceInfo(10, 12)
+                                Items.CLOCK, new EntityVillager.PriceInfo(1, 2)
                             ),
                         new EntityVillager.ListItemForEmeralds(
                                 Item.getItemFromBlock(Blocks.GLASS), new EntityVillager.PriceInfo(-5, -3)
                             )
                     },
                     {
-                        new EntityVillager.ListEnchantedBookForEmeralds()
+                        new EntityVillager.ListEnchantedBookForEmeralds(), new EntityVillager.ListEnchantedBookForEmeralds()
                     },
                     {
-                        new EntityVillager.ListEnchantedBookForEmeralds()
+                        new EntityVillager.ListEnchantedBookForEmeralds(), new EntityVillager.ListEnchantedBookForEmeralds()
                     },
                     {
                         new EntityVillager.ListItemForEmeralds(
                                 Items.NAME_TAG, new EntityVillager.PriceInfo(20, 22)
-                            )
+                            ),
+                        new EntityVillager.EmeraldForItems(Items.LEAD, new EntityVillager.PriceInfo(9, 12)),
                     }
                 },
 
-                {
+                {// Картограф
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.PAPER, new EntityVillager.PriceInfo(24, 36)
@@ -304,7 +343,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                     },
                     {
                         new EntityVillager.EmeraldForItems(
-                                Items.COMPASS, new EntityVillager.PriceInfo(1, 1)
+                                Items.COMPASS, new EntityVillager.PriceInfo(2, 5)
                             )
                     },
                     {
@@ -323,7 +362,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                 }
             },
             {
-                {
+                {// Священник
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.ROTTEN_FLESH, new EntityVillager.PriceInfo(36, 40)
@@ -333,8 +372,22 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                             )
                     },
                     {
+                            new EntityVillager.EmeraldForItems(
+                                    Items.REDSTONE, new EntityVillager.PriceInfo(48, 55)
+                            ),
+                            new EntityVillager.EmeraldForItems(
+                                    Items.GLOWSTONE_DUST, new EntityVillager.PriceInfo(28, 32)
+                            ),
+                            new EntityVillager.EmeraldForItems(
+                                    Items.BLAZE_ROD, new EntityVillager.PriceInfo(4, 8)
+                            ),
+                            new EntityVillager.EmeraldForItems(
+                                    Items.QUARTZ, new EntityVillager.PriceInfo(45, 64)
+                            )
+                    },
+                    {
                         new EntityVillager.ListItemForEmeralds(
-                                Items.REDSTONE, new EntityVillager.PriceInfo(-4, -1)
+                                Items.REDSTONE, new EntityVillager.PriceInfo(-12, -4)
                         ),
                         new EntityVillager.ListItemForEmeralds(
                                 new ItemStack(Items.DYE, 1, EnumDyeColor.BLUE.getDyeDamage()),
@@ -342,23 +395,28 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                         )
                     },
                     {
-                        new EntityVillager.ListItemForEmeralds(Items.ENDER_PEARL, new EntityVillager.PriceInfo(4, 7)), new EntityVillager.ListItemForEmeralds(Item.getItemFromBlock(Blocks.GLOWSTONE), new EntityVillager.PriceInfo(-3, -1))
+                        new EntityVillager.ListItemForEmeralds(Items.ENDER_PEARL, new EntityVillager.PriceInfo(4, 7)),
+                        new EntityVillager.ListItemForEmeralds(
+                                Item.getItemFromBlock(Blocks.GLOWSTONE),
+                                new EntityVillager.PriceInfo(-3, -1)
+                        )
                     },
                     {
                         new EntityVillager.ListItemForEmeralds(
-                                Items.EXPERIENCE_BOTTLE, new EntityVillager.PriceInfo(3, 11)
-                        )
+                                new ItemStack(Items.EXPERIENCE_BOTTLE), new EntityVillager.PriceInfo(-2, -1)
+                        ),
+                        new EntityVillager.ListItemForEmeralds(Items.NETHER_WART, new EntityVillager.PriceInfo(35, 42)),
                     }
                 }
             },
             {
-                {
+                {// Оружейник
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.COAL, new EntityVillager.PriceInfo(16, 24)
                         ),
                         new EntityVillager.ListItemForEmeralds(
-                                Items.IRON_HELMET, new EntityVillager.PriceInfo(4, 6)
+                                Items.IRON_HELMET, new EntityVillager.PriceInfo(2, 4)
                         )
                     },
                     {
@@ -366,39 +424,39 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                                 Items.IRON_INGOT, new EntityVillager.PriceInfo(7, 9)
                         ),
                         new EntityVillager.ListItemForEmeralds(
-                                Items.IRON_CHESTPLATE, new EntityVillager.PriceInfo(10, 14)
+                                Items.IRON_CHESTPLATE, new EntityVillager.PriceInfo(3, 7)
                         )
                     },
                     {
                         new EntityVillager.EmeraldForItems(
-                                Items.DIAMOND, new EntityVillager.PriceInfo(3, 4)
+                                Items.DIAMOND, new EntityVillager.PriceInfo(1, 1)
                         ),
                         new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.DIAMOND_CHESTPLATE, new EntityVillager.PriceInfo(16, 19)
                         )
                     },
                     {
-                        new EntityVillager.ListItemForEmeralds(
+                        new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.CHAINMAIL_BOOTS, new EntityVillager.PriceInfo(5, 7)
                         ),
-                        new EntityVillager.ListItemForEmeralds(
+                        new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.CHAINMAIL_LEGGINGS, new EntityVillager.PriceInfo(9, 11)
                         ),
-                        new EntityVillager.ListItemForEmeralds(
+                        new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.CHAINMAIL_HELMET, new EntityVillager.PriceInfo(5, 7)
                         ),
-                        new EntityVillager.ListItemForEmeralds(
+                        new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.CHAINMAIL_CHESTPLATE, new EntityVillager.PriceInfo(11, 15)
                         )
                     }
                 },
-                {
+                {// Оружейник 2
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.COAL, new EntityVillager.PriceInfo(16, 24)
                         ),
-                        new EntityVillager.ListItemForEmeralds(
-                                Items.IRON_AXE, new EntityVillager.PriceInfo(6, 8)
+                        new EntityVillager.ListEnchantedItemForEmeralds(
+                                Items.IRON_AXE, new EntityVillager.PriceInfo(4, 8)
                         )
                     },
                     {
@@ -411,7 +469,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                     },
                     {
                         new EntityVillager.EmeraldForItems(
-                                Items.DIAMOND, new EntityVillager.PriceInfo(3, 4)
+                                Items.DIAMOND, new EntityVillager.PriceInfo(1, 1)
                         ),
                         new EntityVillager.ListEnchantedItemForEmeralds(
                                 Items.DIAMOND_SWORD, new EntityVillager.PriceInfo(12, 15)
@@ -421,13 +479,13 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                         )
                     }
                 },
-                {
+                {// Инструментальщик
                     {
                         new EntityVillager.EmeraldForItems(
                                 Items.COAL, new EntityVillager.PriceInfo(16, 24)
                         ),
                         new EntityVillager.ListEnchantedItemForEmeralds(
-                                Items.IRON_SHOVEL, new EntityVillager.PriceInfo(5, 7)
+                                Items.IRON_SHOVEL, new EntityVillager.PriceInfo(1, 7)
                         )
                     },
                     {
@@ -435,20 +493,29 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                                 Items.IRON_INGOT, new EntityVillager.PriceInfo(7, 9)
                         ),
                         new EntityVillager.ListEnchantedItemForEmeralds(
-                                Items.IRON_PICKAXE, new EntityVillager.PriceInfo(9, 11)
+                                Items.IRON_PICKAXE, new EntityVillager.PriceInfo(5, 11)
+                        ),
+                        new EntityVillager.ItemAndEmeraldToItem(
+                                Items.IRON_INGOT, new EntityVillager.PriceInfo(20, 24),
+                                Item.getItemFromBlock(Blocks.ANVIL), new EntityVillager.PriceInfo(1, 1)
                         )
                     },
                     {
                         new EntityVillager.EmeraldForItems(
-                                Items.DIAMOND, new EntityVillager.PriceInfo(3, 4)
+                                Items.DIAMOND, new EntityVillager.PriceInfo(1, 1)
                         ),
                         new EntityVillager.ListEnchantedItemForEmeralds(
-                                Items.DIAMOND_PICKAXE, new EntityVillager.PriceInfo(12, 15)
+                                Items.DIAMOND_PICKAXE, new EntityVillager.PriceInfo(12, 22)
+                        )
+                    },
+                    {
+                        new EntityVillager.ListEnchantedItemForEmeralds(
+                                Items.BOW, new EntityVillager.PriceInfo(11, 18)
                         )
                     }
                 }
             },
-            {
+            {// Мясник
                 {
                     {
                         new EntityVillager.EmeraldForItems(
@@ -470,18 +537,21 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                         )
                     }
                 },
-                {
+                {// Кожевник
                     {
-                        new EntityVillager.EmeraldForItems(
-                                Items.LEATHER, new EntityVillager.PriceInfo(9, 12)
+                        new EntityVillager.ListEnchantedItemForEmeralds(
+                                Items.LEATHER, new EntityVillager.PriceInfo(2, 3)
                         ),
-                        new EntityVillager.ListItemForEmeralds(
-                                Items.LEATHER_LEGGINGS, new EntityVillager.PriceInfo(2, 4)
+                        new EntityVillager.ListEnchantedItemForEmeralds(
+                                Items.LEATHER_BOOTS, new EntityVillager.PriceInfo(1, 2)
                         )
                     },
                     {
                         new EntityVillager.ListEnchantedItemForEmeralds(
-                                Items.LEATHER_CHESTPLATE, new EntityVillager.PriceInfo(7, 12)
+                                Items.LEATHER_CHESTPLATE, new EntityVillager.PriceInfo(3, 4)
+                        ),
+                        new EntityVillager.ListEnchantedItemForEmeralds(
+                                Items.LEATHER_LEGGINGS, new EntityVillager.PriceInfo(2, 3)
                         )
                     },
                     {
@@ -491,8 +561,27 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
                     }
                 }
             },
-            {
-                new EntityVillager.ITradeList[0][]
+            {// Нищий <new EntityVillager.ITradeList[0][]>
+                {
+                    {
+                        new EntityVillager.ListItemForEmeralds(
+                                Item.getItemFromBlock(Blocks.BROWN_MUSHROOM), new EntityVillager.PriceInfo(-5, -1)
+                        ),
+                        new EntityVillager.ListItemForEmeralds(
+                                Item.getItemFromBlock(Blocks.GRASS), new EntityVillager.PriceInfo(-7, -3)
+                        )
+                    },
+                    {
+                        new EntityVillager.ListItemForEmeralds(
+                                Item.getItemFromBlock(Blocks.GRASS_PATH), new EntityVillager.PriceInfo(-5, -2)
+                        )
+                    },
+                    {
+                        new EntityVillager.EmeraldForItems(
+                                Item.getItemFromBlock(Blocks.LOG), new EntityVillager.PriceInfo(16, 24)
+                        )
+                    }
+                }
             }
     };
 
@@ -956,7 +1045,7 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
         recipe.incrementToolUses();
         this.livingSoundTime = -this.getTalkInterval();
         this.playSound(SoundEvents.ENTITY_VILLAGER_YES, this.getSoundVolume(), this.getSoundPitch());
-        int i = 3 + this.rand.nextInt(4);
+        int i = 10 + this.rand.nextInt(8);
 
         if (recipe.getToolUses() == 1 || this.rand.nextInt(5) == 0)
         {
@@ -1490,6 +1579,27 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
             this.priceInfo = priceInfo;
         }
 
+        private EntityVillager.ITradeList setSpawnEgg(Class <? extends EntityAnimal > entityType)
+        {
+
+            NBTTagCompound nbttagcompound = this.itemToBuy.getTagCompound();
+
+            if (nbttagcompound == null)
+            {
+                nbttagcompound = new NBTTagCompound();
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+
+                ResourceLocation entityId = EntityList.func_191306_a(entityType);
+
+                nbttagcompound1.setString("id", entityId.toString());
+                nbttagcompound.setTag("EntityTag", nbttagcompound1);
+
+                this.itemToBuy.setTagCompound(nbttagcompound);
+            }
+
+            return this;
+        }
+
         public void func_190888_a(IMerchant p_190888_1_, MerchantRecipeList p_190888_2_, Random p_190888_3_)
         {
             int i = 1;
@@ -1502,15 +1612,25 @@ public class EntityVillager extends EntityAgeable implements INpc, IMerchant
             ItemStack itemstack;
             ItemStack itemstack1;
 
+            NBTTagCompound nbttagItemToBuy = itemToBuy.getTagCompound();
+
             if (i < 0)
             {
                 itemstack = new ItemStack(Items.EMERALD);
                 itemstack1 = new ItemStack(this.itemToBuy.getItem(), -i, this.itemToBuy.getMetadata());
+
+                if (nbttagItemToBuy != null) {
+                    itemstack1.setTagCompound(nbttagItemToBuy.copy());
+                }
             }
             else
             {
                 itemstack = new ItemStack(Items.EMERALD, i, 0);
                 itemstack1 = new ItemStack(this.itemToBuy.getItem(), 1, this.itemToBuy.getMetadata());
+
+                if (nbttagItemToBuy != null) {
+                    itemstack1.setTagCompound(nbttagItemToBuy.copy());
+                }
             }
 
             p_190888_2_.add(new MerchantRecipe(itemstack, itemstack1));
