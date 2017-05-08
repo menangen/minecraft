@@ -29,7 +29,7 @@ public class MapGenVillage extends MapGenStructure
     public MapGenVillage()
     {
         Random random = new Random();
-        this.distance = 15 + random.nextInt(3);
+        this.distance = random.nextInt(8) == 0 ? 24: 12 + random.nextInt(10);
         this.minTownSeparation = 20;
     }
 

@@ -85,7 +85,7 @@ public class Village
 
         int i = this.numVillagers / 10;
 
-        if (this.numIronGolems < i && this.villageDoorInfoList.size() > 20 && this.worldObj.rand.nextInt(7000) == 0)
+        if (this.numIronGolems < i && this.villageDoorInfoList.size() > 10 && this.worldObj.rand.nextInt(700) == 0)
         {
             Vec3d vec3d = this.findRandomSpawnPos(this.center, 2, 4, 2);
 
